@@ -1,24 +1,40 @@
 import React, { Component } from 'react';
-import { AppRegistry, Image, View, Text } from 'react-native';
+import { AppRegistry, Text, View } from 'react-native';
 
-// notice stateless component
-const Greeting = ({ name }) => <Text>Hello, {name}!</Text>;
+class Blink extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { showText: true };
 
-class LotsOfGreetings extends Component {
+    // toggle state every second
+    setInterval(() => {
+      this.setState({ showText: !this.state.showText });
+    }, 1000);
+  }
+
   render() {
+    let text;
+
+    if (this.state.showText) {
+      text = <Text>{this.props.text}</Text>;
+    } else {
+      text = null;
+    }
+
     return (
-      <View style={styles.views}>
-        <Greeting name="Ada" />
-        <Greeting name="Steven" />
+      <View>
+        {text}
       </View>
     );
   }
 }
 
-const styles = {
-  views: {
-    alignItems: 'center',
-  },
-};
+class BlinkApp extends Component {
+  render() {
+    return (
+      <Blink text="Hello my name is Steven." />
+    );
+  }
+}
 
-AppRegistry.registerComponent('helloWorld', () => LotsOfGreetings);
+AppRegistry.registerComponent('helloWorld', () => BlinkApp);
