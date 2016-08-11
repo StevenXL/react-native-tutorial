@@ -1,40 +1,32 @@
 import React, { Component } from 'react';
 import { AppRegistry, Text, View } from 'react-native';
 
-class Blink extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { showText: true };
-
-    // toggle state every second
-    setInterval(() => {
-      this.setState({ showText: !this.state.showText });
-    }, 1000);
-  }
-
+class LotsOfStyles extends Component {
   render() {
-    let text;
-
-    if (this.state.showText) {
-      text = <Text>{this.props.text}</Text>;
-    } else {
-      text = null;
-    }
-
     return (
-      <View>
-        {text}
+      <View style={styles.view}>
+        <Text style={[styles.text, styles.red]}>Just Red</Text>
+        <Text style={[styles.text, styles.blue]}>Just Blue</Text>
+        <Text style={[styles.text, styles.blue, styles.red]}>Blue, Then Red</Text>
+        <Text style={[styles.text, styles.red, styles.blue]}>Red, Then Blue</Text>
       </View>
     );
   }
 }
 
-class BlinkApp extends Component {
-  render() {
-    return (
-      <Blink text="Hello my name is Steven." />
-    );
-  }
-}
+const styles = {
+  view: {
+    backgroundColor: '#DAF7A6',
+  },
+  text: {
+    textAlign: 'center',
+  },
+  red: {
+    color: 'red',
+  },
+  blue: {
+    color: 'blue',
+  },
+};
 
-AppRegistry.registerComponent('helloWorld', () => BlinkApp);
+AppRegistry.registerComponent('helloWorld', () => LotsOfStyles);
