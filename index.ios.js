@@ -1,31 +1,23 @@
 import React, { Component } from 'react';
 import { AppRegistry, Text, View } from 'react-native';
 
-class FlexDimensionsBasics extends Component {
+class FlexBoxBasics extends Component {
   render() {
     return (
-      <View style={{flex: 1}}>
-        <View style={styles.small} />
-        <View style={styles.medium} />
-        <View style={styles.large} />
+      <View style={{flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
+        <View style={[style.basic, {backgroundColor: 'skyblue'}]}/>
+        <View style={[style.basic, {backgroundColor: 'powderblue'}]}/>
+        <View style={[style.basic, {backgroundColor: 'steelblue'}]}/>
       </View>
     );
   }
 }
 
-const styles = {
-  small: {
-    backgroundColor: 'powderblue',
-    flex: 1,
-  },
-  medium: {
-    backgroundColor: 'skyblue',
-    flex: 2,
-  },
-  large: {
-    backgroundColor: 'steelblue',
-    flex: 3,
+const style = {
+  basic: {
+    width: 50,
+    height: 50,
   },
 };
 
-AppRegistry.registerComponent('helloWorld', () => FlexDimensionsBasics);
+AppRegistry.registerComponent('helloWorld', () => FlexBoxBasics);
