@@ -1,23 +1,27 @@
 import React, { Component } from 'react';
-import { AppRegistry, Text, View } from 'react-native';
+import { AppRegistry, Text, TextInput, View } from 'react-native';
 
-class FlexBoxBasics extends Component {
+class PizzaTranslator extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {text: ''};
+  }
+
   render() {
     return (
-      <View style={{flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
-        <View style={[style.basic, {backgroundColor: 'skyblue'}]}/>
-        <View style={[style.basic, {backgroundColor: 'powderblue'}]}/>
-        <View style={[style.basic, {backgroundColor: 'steelblue'}]}/>
+      <View style={{ padding: 10 }} >
+        <TextInput
+          style={{ height: 40 }}
+          placeholder="Type here to translate!"
+          onChangeText={(text) => this.setState({ text })}
+        />
+
+        <Text style={{ padding: 10, fontSize: 42 }}>
+          {this.state.text.split(' ').map((word) => word && 'z').join(' ')}
+        </Text>
       </View>
     );
   }
 }
 
-const style = {
-  basic: {
-    width: 50,
-    height: 50,
-  },
-};
-
-AppRegistry.registerComponent('helloWorld', () => FlexBoxBasics);
+AppRegistry.registerComponent('helloWorld', () => PizzaTranslator);
