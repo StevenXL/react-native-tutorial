@@ -1,21 +1,24 @@
 import React, { Component } from 'react';
-import { AppRegistry, Image } from 'react-native';
+import { AppRegistry, Image, View, Text } from 'react-native';
 
-class Bananas extends Component {
+// notice stateless component
+const Greeting = ({ name }) => <Text>Hello, {name}!</Text>;
+
+class LotsOfGreetings extends Component {
   render() {
-    let pic = {uri: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg'};
-
     return (
-      <Image source={pic} style={styles.pic} />
+      <View style={styles.views}>
+        <Greeting name="Ada" />
+        <Greeting name="Steven" />
+      </View>
     );
   }
 }
 
 const styles = {
-  pic: {
-    width: 193,
-    height: 110
+  views: {
+    alignItems: 'center',
   },
 };
 
-AppRegistry.registerComponent('helloWorld', () => Bananas);
+AppRegistry.registerComponent('helloWorld', () => LotsOfGreetings);
