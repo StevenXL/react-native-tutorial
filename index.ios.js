@@ -1,32 +1,37 @@
 import React, { Component } from 'react';
 import { AppRegistry, Text, View } from 'react-native';
 
-class LotsOfStyles extends Component {
+class FixedDimensionsBasics extends Component {
   render() {
     return (
-      <View style={styles.view}>
-        <Text style={[styles.text, styles.red]}>Just Red</Text>
-        <Text style={[styles.text, styles.blue]}>Just Blue</Text>
-        <Text style={[styles.text, styles.blue, styles.red]}>Blue, Then Red</Text>
-        <Text style={[styles.text, styles.red, styles.blue]}>Red, Then Blue</Text>
+      <View>
+        <View style={styles.small}>
+        </View>
+        <View style={styles.medium}>
+        </View>
+        <View style={styles.large}>
+        </View>
       </View>
     );
   }
 }
 
 const styles = {
-  view: {
-    backgroundColor: '#DAF7A6',
+  small: {
+    backgroundColor: 'powderblue',
+    height: 50,
+    width: 50,
   },
-  text: {
-    textAlign: 'center',
+  medium: {
+    backgroundColor: 'skyblue',
+    height: 100,
+    width: 100,
   },
-  red: {
-    color: 'red',
-  },
-  blue: {
-    color: 'blue',
+  large: {
+    backgroundColor: 'steelblue',
+    height: 150,
+    width: 150,
   },
 };
 
-AppRegistry.registerComponent('helloWorld', () => LotsOfStyles);
+AppRegistry.registerComponent('helloWorld', () => FixedDimensionsBasics);
