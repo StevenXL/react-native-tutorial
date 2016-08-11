@@ -1,12 +1,21 @@
 import React, { Component } from 'react';
-import { AppRegistry, Text } from 'react-native';
+import { AppRegistry, Image } from 'react-native';
 
-class helloWorld extends Component {
+class Bananas extends Component {
   render() {
+    let pic = {uri: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg'};
+
     return (
-      <Text>Hello World</Text>
+      <Image source={pic} style={styles.pic} />
     );
   }
 }
 
-AppRegistry.registerComponent('helloWorld', () => helloWorld);
+const styles = {
+  pic: {
+    width: 193,
+    height: 110
+  },
+};
+
+AppRegistry.registerComponent('helloWorld', () => Bananas);
