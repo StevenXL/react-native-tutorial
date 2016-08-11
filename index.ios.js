@@ -1,16 +1,13 @@
 import React, { Component } from 'react';
 import { AppRegistry, Text, View } from 'react-native';
 
-class FixedDimensionsBasics extends Component {
+class FlexDimensionsBasics extends Component {
   render() {
     return (
-      <View>
-        <View style={styles.small}>
-        </View>
-        <View style={styles.medium}>
-        </View>
-        <View style={styles.large}>
-        </View>
+      <View style={{flex: 1}}>
+        <View style={styles.small} />
+        <View style={styles.medium} />
+        <View style={styles.large} />
       </View>
     );
   }
@@ -19,19 +16,16 @@ class FixedDimensionsBasics extends Component {
 const styles = {
   small: {
     backgroundColor: 'powderblue',
-    height: 50,
-    width: 50,
+    flex: 1,
   },
   medium: {
     backgroundColor: 'skyblue',
-    height: 100,
-    width: 100,
+    flex: 2,
   },
   large: {
     backgroundColor: 'steelblue',
-    height: 150,
-    width: 150,
+    flex: 3,
   },
 };
 
-AppRegistry.registerComponent('helloWorld', () => FixedDimensionsBasics);
+AppRegistry.registerComponent('helloWorld', () => FlexDimensionsBasics);
