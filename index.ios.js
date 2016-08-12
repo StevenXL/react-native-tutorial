@@ -1,44 +1,30 @@
 import React, { Component } from 'react';
-import { AppRegistry, Image, ScrollView, Text } from 'react-native';
+import { AppRegistry, Image, ListView, View, Text } from 'react-native';
 
-class Scroller extends Component {
+class Lister extends Component {
+  constructor(props) {
+    super(props);
+    const ds = new ListView.DataSource({
+      rowHasChanged: (r1, r2) => r1 !== r2
+    });
+
+    this.state = {
+      dataSource: ds.cloneWithRows([
+        'John', 'Joel', 'James', 'Jimmy', 'Jackson', 'Jullian', 'Julie', 'Devin'
+      ]),
+    };
+  }
+
   render() {
-      return (
-        <ScrollView>
-          <Text style={{fontSize:96}}>Scroll me plz</Text>
-          <Image source={require('./img/favicon.png')} />
-          <Image source={require('./img/favicon.png')} />
-          <Image source={require('./img/favicon.png')} />
-          <Image source={require('./img/favicon.png')} />
-          <Image source={require('./img/favicon.png')} />
-          <Text style={{fontSize:96}}>If you like</Text>
-          <Image source={require('./img/favicon.png')} />
-          <Image source={require('./img/favicon.png')} />
-          <Image source={require('./img/favicon.png')} />
-          <Image source={require('./img/favicon.png')} />
-          <Image source={require('./img/favicon.png')} />
-          <Text style={{fontSize:96}}>Scrolling down</Text>
-          <Image source={require('./img/favicon.png')} />
-          <Image source={require('./img/favicon.png')} />
-          <Image source={require('./img/favicon.png')} />
-          <Image source={require('./img/favicon.png')} />
-          <Image source={require('./img/favicon.png')} />
-          <Text style={{fontSize:96}}>What's the best</Text>
-          <Image source={require('./img/favicon.png')} />
-          <Image source={require('./img/favicon.png')} />
-          <Image source={require('./img/favicon.png')} />
-          <Image source={require('./img/favicon.png')} />
-          <Image source={require('./img/favicon.png')} />
-          <Text style={{fontSize:96}}>Framework around?</Text>
-          <Image source={require('./img/favicon.png')} />
-          <Image source={require('./img/favicon.png')} />
-          <Image source={require('./img/favicon.png')} />
-          <Image source={require('./img/favicon.png')} />
-          <Image source={require('./img/favicon.png')} />
-          <Text style={{fontSize:80}}>React Native</Text>
-        </ScrollView>
+    return (
+      <View style={{ paddingTop: 22 }} >
+        <ListView
+          dataSource={this.state.dataSource}
+          renderRow={(rowData) => <Text>{rowData}</Text>}
+        />
+      </View>
     );
   }
 }
 
-AppRegistry.registerComponent('helloWorld', () => Scroller);
+AppRegistry.registerComponent('helloWorld', () => Lister);
