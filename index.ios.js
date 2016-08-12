@@ -1,30 +1,27 @@
 import React, { Component } from 'react';
 import { AppRegistry, Image, ListView, View, Text } from 'react-native';
 
-class Lister extends Component {
+class NetworkingBasics extends Component {
   constructor(props) {
     super(props);
-    const ds = new ListView.DataSource({
-      rowHasChanged: (r1, r2) => r1 !== r2
-    });
-
     this.state = {
-      dataSource: ds.cloneWithRows([
-        'John', 'Joel', 'James', 'Jimmy', 'Jackson', 'Jullian', 'Julie', 'Devin'
-      ]),
+      quote: "I am a quote from Steven's head."
     };
+
+    // notice that fetch returns a promise that resolves with a Response object.
+    // The Response object implements Body.
+    fetch("https://quotesondesign.com/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=1")
+      .then((response) => response.json())
+      .then((json) => this.setState({ quote: json[0].content }));
   }
 
   render() {
     return (
-      <View style={{ paddingTop: 22 }} >
-        <ListView
-          dataSource={this.state.dataSource}
-          renderRow={(rowData) => <Text>{rowData}</Text>}
-        />
+      <View style={{ paddingTop: 22 }}>
+        <Text>{this.state.quote}</Text>
       </View>
     );
   }
 }
 
-AppRegistry.registerComponent('helloWorld', () => Lister);
+AppRegistry.registerComponent('helloWorld', () => NetworkingBasics);
