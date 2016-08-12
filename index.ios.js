@@ -1,27 +1,28 @@
 import React, { Component } from 'react';
-import { AppRegistry, Image, ListView, View, Text } from 'react-native';
+import { AppRegistry, Navigator } from 'react-native';
 
-class NetworkingBasics extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      quote: "I am a quote from Steven's head."
-    };
+import MyScene from './MyScene';
 
-    // notice that fetch returns a promise that resolves with a Response object.
-    // The Response object implements Body.
-    fetch("https://quotesondesign.com/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=1")
-      .then((response) => response.json())
-      .then((json) => this.setState({ quote: json[0].content }));
-  }
-
+class NavigatorBasics extends Component {
   render() {
     return (
-      <View style={{ paddingTop: 22 }}>
-        <Text>{this.state.quote}</Text>
-      </View>
+      <Navigator
+        initialRoute={{ title: 'My Initial Scene', index: 0 }}
+        renderScene={(route, navigator) => <MyScene
+          title={route.title}
+          onForward={ () => {
+            const nextIndex = route.index + 1;
+            navigator.push({ title: `Scene ${nextIndex}`, index: nextIndex });
+          }}
+          onBack={ () => {
+            if (route.index > 0) {
+              navigator.pop();
+            }
+          }}
+        />}
+      />
     );
   }
 }
 
-AppRegistry.registerComponent('helloWorld', () => NetworkingBasics);
+AppRegistry.registerComponent('helloWorld', () => NavigatorBasics);
